@@ -1,0 +1,22 @@
+<div
+  id="{{ .Get "id" }}"
+  class="monaco-editor-custom">
+</div>
+
+<script>
+  window.addEventListener('load', function() {
+      monaco.editor.create(document.getElementById("{{ .Get "id" }}"), {
+          value: `{{ trim .InnerDeindent "\n\r\"" | safeJS }}`,
+        language: "{{ .Get "language" }}",
+        lineNumbers: 'off',
+        roundedSelection: false,
+        scrollBeyondLastLine: false,
+        readOnly: false,
+        tabSize: 2,
+        minimap: {
+          enabled: false,
+        },
+        theme: '',
+      });
+  });
+  </script>

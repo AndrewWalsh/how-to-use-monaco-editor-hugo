@@ -1,0 +1,14 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs/loader.min.js" integrity="sha512-6bIYsGqvLpAiEBXPdRQeFf5cueeBECtAKJjIHer3BhBZNTV3WLcLA8Tm3pDfxUwTMIS+kAZwTUvJ1IrMdX8C5w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs' }});
+require(["vs/editor/editor.main"], async () => {
+	await fetch('/themes/dracula.json')
+		.then(data => data.json())
+		.then(data => {
+			monaco.editor.defineTheme('dracula', data);
+			monaco.editor.setTheme('dracula');
+			window.monaco = monaco
+		})
+});
+</script>
